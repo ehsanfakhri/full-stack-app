@@ -6,7 +6,7 @@ interface IDrImgProps {
   imgSrc: string;
 }
 
-const DrImg = ({ containerStyle, imgSrc }: IDrImgProps) => {
+const MrImg = ({ containerStyle, imgSrc }: IDrImgProps) => {
   return (
     <div className={`${containerStyle}`}>
       <Image src={imgSrc} fill priority alt="" />
@@ -14,4 +14,4 @@ const DrImg = ({ containerStyle, imgSrc }: IDrImgProps) => {
   );
 };
 
-export default DrImg;
+export default MrImg;
