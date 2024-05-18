@@ -11,6 +11,7 @@ import {
   Calendar,
   Briefcase,
 } from "lucide-react";
+import Image from "next/image";
 
 const infoData = [
   { icon: <User2 size={20} />, text: "Ehsan Fakhri" },
@@ -20,6 +21,24 @@ const infoData = [
   { icon: <GraduationCap size={20} />, text: "Master on Computer Science" },
   { icon: <HomeIcon size={20} />, text: "321 Blue Avenue, NY, USA" },
 ];
+
+type IQualificationData =
+  | {
+      title: string;
+      data: {
+        university: string;
+        qualification: string;
+        years: string;
+      }[];
+    }
+  | {
+      title: string;
+      data: {
+        company: string;
+        role: string;
+        years: string;
+      }[];
+    };
 
 const qualificationData = [
   {
@@ -47,22 +66,36 @@ const qualificationData = [
     data: [
       {
         company: "ABC Inc",
-        qualification: "software Engineer",
+        role: "software Engineer",
         years: "2018 - 2020",
       },
       {
         company: "XYZ Corporation",
-        qualification: "Senior Developer",
+        role: "Senior Developer",
         years: "2020 - 2022",
       },
       {
         company: "Tech Innovators",
-        qualification: "Lead developer",
+        role: "Lead developer",
         years: "2022 - Present",
       },
     ],
   },
 ];
+
+type ISkillData =
+  | {
+      title: string;
+      data: {
+        name: string;
+      }[];
+    }
+  | {
+      title: string;
+      data: {
+        imgPath: string;
+      }[];
+    };
 
 const skillData = [
   {
@@ -101,30 +134,11 @@ const skillData = [
   },
 ];
 
-type IQualificationData =
-  | {
-      title: string;
-      data: {
-        university: string;
-        qualification: string;
-        years: string;
-      }[];
-    }
-  | {
-      title: string;
-      data: {
-        company: string;
-        qualification: string;
-        years: string;
-      }[];
-    }
-  | undefined;
-
 const About = () => {
   const getData = (
-    arr: IQualificationData[],
+    arr: IQualificationData[] | ISkillData[],
     title: string
-  ): IQualificationData => {
+  ): IQualificationData | ISkillData | undefined => {
     return arr.find((item) => item?.title === title);
   };
 
@@ -195,25 +209,165 @@ const About = () => {
                 </TabsContent>
                 <TabsContent value="qualifications">
                   <div>
-                    <h3>My Awesome Journey</h3>
+                    <h3 className="h3 mb-8 text-center xl:text-left">
+                      My Awesome Journey
+                    </h3>
                     {/* experience & education Wrapper */}
-                    <div>
+                    <div className="grid md:grid-cols-2 gap-y-8">
                       {/* experience */}
-                      <div>
-                        <div>
+                      <div className="flex flex-col gap-y-6">
+                        <div className="flex gap-x-4 items-center text-[22px] text-primary ">
                           <Briefcase />
-                          <div>
+                          <h4 className="capitalize font-medium">
                             {getData(qualificationData, "experience")?.title}
-                          </div>
+                          </h4>
+                        </div>
+                        {/* list */}
+                        <div className="flex flex-col gap-y-8">
+                          {getData(qualificationData, "experience")?.data.map(
+                            (item, index) => {
+                              const {
+                                company,
+                                role,
+                                years,
+                              }: {
+                                company?: string;
+                                role?: string;
+                                years?: string;
+                              } = item;
+                              return (
+                                <div
+                                  className="flex gap-x-8 group "
+                                  key={index}
+                                >
+                                  <div className="h-[84px] w-[1px] bg-border relative ml-2">
+                                    <div
+                                      className="w-[11px] h-[11px] rounded-full bg-primary absolute -left-[5px]
+                                    group-hover:translate-y-[84px] transition-all"
+                                    ></div>
+                                  </div>
+                                  <div>
+                                    <div className="font-semibold text-xl leading-none mb-2">
+                                      {company}
+                                    </div>
+                                    <div className="text-lg leading-none text-muted-foreground mb-4">
+                                      {role}
+                                    </div>
+                                    <div className="text-base font-medium">
+                                      {years}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          )}
                         </div>
                       </div>
 
                       {/* education */}
-                      <div>education</div>
+                      <div className="flex flex-col gap-y-6">
+                        <div className="flex gap-x-4 items-center text-[22px] text-primary ">
+                          <GraduationCap size={28} />
+                          <h4 className="capitalize font-medium">
+                            {getData(qualificationData, "education")?.title}
+                          </h4>
+                        </div>
+                        {/* list */}
+                        <div className="flex flex-col gap-y-8">
+                          {getData(qualificationData, "education")?.data.map(
+                            (item, index) => {
+                              const {
+                                university,
+                                qualification,
+                                years,
+                              }: {
+                                university?: string;
+                                qualification?: string;
+                                years?: string;
+                              } = item;
+                              return (
+                                <div
+                                  className="flex gap-x-8 group "
+                                  key={index}
+                                >
+                                  <div className="h-[84px] w-[1px] bg-border relative ml-2">
+                                    <div
+                                      className="w-[11px] h-[11px] rounded-full bg-primary absolute -left-[5px]
+                                    group-hover:translate-y-[84px] transition-all"
+                                    ></div>
+                                  </div>
+                                  <div>
+                                    <div className="font-semibold text-xl leading-none mb-2">
+                                      {university}
+                                    </div>
+                                    <div className="text-lg leading-none text-muted-foreground mb-4">
+                                      {qualification}
+                                    </div>
+                                    <div className="text-base font-medium">
+                                      {years}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </TabsContent>
-                <TabsContent value="skills">skills info</TabsContent>
+                <TabsContent value="skills">
+                  {/* skill */}
+                  <div className="text-center xl:text-left">
+                    <h3 className="h3 mb-8">What I Use Everyday</h3>
+                    {/* slills */}
+                    <div className="mb-16">
+                      <h4 className="text-xl font-semibold mb-2">Skills</h4>
+                      <div className="border-b border-border mb-4"></div>
+                      {/* skill list */}
+                      <div>
+                        {getData(skillData, "skills")?.data.map(
+                          (item, index) => {
+                            const { name }: { name?: string } = item;
+                            return (
+                              <div
+                                key={index}
+                                className="w-2/4 text-center xl:text-left mx-auto xl:mx-0"
+                              >
+                                <div className="font-medium">{name}</div>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                    {/* tools */}
+                    <div>
+                      <h4 className="text-xl font-semibold mb-2 xl:text-left">
+                        Tools
+                      </h4>
+                      <div className="border-b border-border mb-4"></div>
+                      {/* tool list */}
+                      <div className="flex gap-x-8 justify-center xl:justify-start">
+                        {getData(skillData, "tools")?.data.map(
+                          (item, index) => {
+                            const { imgPath }: { imgPath: string } = item;
+                            return (
+                              <div key={index}>
+                                <Image
+                                  src={imgPath}
+                                  width={48}
+                                  height={48}
+                                  priority
+                                />
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
               </div>
             </Tabs>
           </div>
