@@ -4,11 +4,11 @@
 import CountUp from "react-countup";
 
 interface IBadgeProps {
-  containerStyles: String;
+  containerStyles: string;
   icon: JSX.Element;
   endCountNum: number;
-  endCounttext?: String;
-  badgetext: String;
+  endCounttext?: string;
+  badgetext: string;
 }
 
 const Badge = ({

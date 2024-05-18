@@ -101,24 +101,33 @@ const skillData = [
   },
 ];
 
-interface IData {
-  data: object;
-}
-
-interface IObjet {
-  title: String;
-  data: Array<IData>;
-}
-
-interface IgetDataProps {
-  arr: Array<IObjet>;
-  title: String;
-}
+type IQualificationData =
+  | {
+      title: string;
+      data: {
+        university: string;
+        qualification: string;
+        years: string;
+      }[];
+    }
+  | {
+      title: string;
+      data: {
+        company: string;
+        qualification: string;
+        years: string;
+      }[];
+    }
+  | undefined;
 
 const About = () => {
-  const getData = ({ arr, title }: IgetDataProps) => {
-    return arr.find((item) => item.title === title);
+  const getData = (
+    arr: IQualificationData[],
+    title: string
+  ): IQualificationData => {
+    return arr.find((item) => item?.title === title);
   };
+
   return (
     <section className="xl:h-[860px] pb-12 xl:py-24">
       <div className="container mx-auto">
@@ -154,12 +163,55 @@ const About = () => {
               <div className="text-lg mt-12 xl:mt-8">
                 {/* personal */}
                 <TabsContent value="personal">
-                  <div>
-                    <h3>Unmatched Service Quality for Over 10 Years</h3>
+                  <div className="text-center xl:text-left">
+                    <h3 className="h3 mb-4">
+                      Unmatched Service Quality for Over 10 Years
+                    </h3>
+                    <p className="subtitle max-w-xl mx-auto xl:mx-0">
+                      I specialize in crafting in intuitive websites with
+                      cutting-edge technology, delivering dynamic and engaging
+                      user experience
+                    </p>
+                    {/* icons */}
+                    <div className="grid xl:grid-cols-2 gap-4 mb-12">
+                      {infoData.map((item, index) => (
+                        <div
+                          className="flex items-center gap-x-4 mx-auto xl:mx-0"
+                          key={index}
+                        >
+                          <div className="text-primary">{item.icon}</div>
+                          <div>{item.text}</div>
+                        </div>
+                      ))}
+                    </div>
+                    {/* languages */}
+                    <div className="flex flex-col gap-y-2">
+                      <div className="text-primary">Language Skill</div>
+                      <div className="border-b border-border"></div>
+                      <div>English, Frwnch, Spanish, Italian</div>
+                    </div>
                   </div>
+                  {/* qualifications */}
                 </TabsContent>
                 <TabsContent value="qualifications">
-                  qualifications info
+                  <div>
+                    <h3>My Awesome Journey</h3>
+                    {/* experience & education Wrapper */}
+                    <div>
+                      {/* experience */}
+                      <div>
+                        <div>
+                          <Briefcase />
+                          <div>
+                            {getData(qualificationData, "experience")?.title}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* education */}
+                      <div>education</div>
+                    </div>
+                  </div>
                 </TabsContent>
                 <TabsContent value="skills">skills info</TabsContent>
               </div>

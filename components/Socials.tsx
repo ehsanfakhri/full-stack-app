@@ -34,8 +34,8 @@ const icons = [
 ];
 
 interface ISocialsProps {
-  containerStyles?: String;
-  iconsStyles?: String;
+  containerStyles?: string;
+  iconsStyles?: string;
 }
 
 const Socials = ({ containerStyles, iconsStyles }: ISocialsProps) => {
