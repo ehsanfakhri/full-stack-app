@@ -22,7 +22,7 @@ const infoData = [
   { icon: <HomeIcon size={20} />, text: "321 Blue Avenue, NY, USA" },
 ];
 
-type IQualificationData =
+type QualificationDataProps =
   | {
       title: string;
       data: {
@@ -83,7 +83,7 @@ const qualificationData = [
   },
 ];
 
-type ISkillData =
+type SkillDataProps =
   | {
       title: string;
       data: {
@@ -136,9 +136,9 @@ const skillData = [
 
 const About = () => {
   const getData = (
-    arr: IQualificationData[] | ISkillData[],
+    arr: QualificationDataProps[] | SkillDataProps[],
     title: string
-  ): IQualificationData | ISkillData | undefined => {
+  ): QualificationDataProps | SkillDataProps | undefined => {
     return arr.find((item) => item?.title === title);
   };
 

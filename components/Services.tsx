@@ -7,12 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-type IServicesData = {
-  icon: JSX.Element;
-  title: string;
-  description: string;
-};
-
 const servicesData = [
   {
     icon: <GanttChartSquare size={72} strokeWidth={0.8} />,
