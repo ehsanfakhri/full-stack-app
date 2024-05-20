@@ -1,5 +1,5 @@
 "use client";
-
+// hooks
 import { useState, useEffect } from "react";
 const useScrollProgress = () => {
   const [completion, setCompletion] = useState<number>(0);

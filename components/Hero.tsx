@@ -1,7 +1,13 @@
+"use client";
+
+// next link
 import Link from "next/link";
+// shadcn ui
 import { Button } from "./ui/button";
+// icons lucide react
 import { Download, Send } from "lucide-react";
 
+// icons react icons
 import {
   RiBriefcase4Fill,
   RiTeamFill,

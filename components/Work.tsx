@@ -1,6 +1,9 @@
 "use client";
 
+// next link
 import Link from "next/link";
+
+// shadcn ui
 import { Button } from "./ui/button";
 
 // import swiper styles

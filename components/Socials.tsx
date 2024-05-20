@@ -1,7 +1,8 @@
 "use client";
 
+// next link
 import Link from "next/link";
-import React from "react";
+// icons react icons
 import {
   RiYoutubeFill,
   RiLinkedinBoxFill,
@@ -10,6 +11,7 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 
+// icons path name
 const icons = [
   {
     path: "/",

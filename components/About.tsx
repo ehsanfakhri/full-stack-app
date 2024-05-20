@@ -1,7 +1,10 @@
+"use client";
+
 // components
 import MrImg from "./MrImg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+// icons lucide react
 import {
   User2,
   MailIcon,
@@ -13,6 +16,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+// info data
 const infoData = [
   { icon: <User2 size={20} />, text: "Ehsan Fakhri" },
   { icon: <PhoneCall size={20} />, text: "+012 346 6789" },

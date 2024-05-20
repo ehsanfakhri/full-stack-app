@@ -1,7 +1,12 @@
 "use client";
 
+// shadcd ui
 import { Button } from "./ui/button";
+
+// icons react icons
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+
+// shadcn ui themes
 import { useTheme } from "next-themes";
 
 const ThemeToggler = () => {

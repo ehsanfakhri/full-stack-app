@@ -1,4 +1,9 @@
+"use client";
+
+// icons lucide react
 import { GanttChartSquare, Blocks, Gem } from "lucide-react";
+
+// shadcn ui card
 import {
   Card,
   CardContent,
@@ -7,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+// service data
 const servicesData = [
   {
     icon: <GanttChartSquare size={72} strokeWidth={0.8} />,

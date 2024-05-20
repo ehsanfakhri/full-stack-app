@@ -1,8 +1,17 @@
+"use client";
+
+// next link
 import Link from "next/link";
+
+// next image
 import Image from "next/image";
+
+// shadcn ui
 import { Card, CardHeader } from "./ui/card";
-import { Github, Link2Icon } from "lucide-react";
 import { Badge } from "./ui/badge";
+
+// icons lucide react
+import { Github, Link2Icon } from "lucide-react";
 
 type ProjectProps = {
   project: {
@@ -22,7 +31,7 @@ const ProjectCard = ({ project }: ProjectProps) => {
         {/* image */}
         <div
           className="relative w-full h-[300px] flex items-center justify-center 
-         dark:bg-secondary/40 xl:bg-work_project_bg_light xl:dark:bg-work_project_bg_dark xl:bg-[110%] xl:bg-no-repeat overflow-hidden"
+         bg-tertiary dark:bg-secondary/40 xl:bg-work_project_bg_light xl:dark:bg-work_project_bg_dark xl:bg-[110%] xl:bg-no-repeat overflow-hidden"
         >
           <Image
             className="absolute bottom-0 shadow-2xl "
