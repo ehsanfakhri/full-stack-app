@@ -78,10 +78,7 @@ const projectData = [
 ];
 
 // remove category duplicates
-const uniqueCategories = [
-  "all projects",
-  ...new Set(projectData.map((item) => item.category)),
-];
+const uniqueCategories = ["all projects", "react js", "next js", "fullstack"];
 
 const ProjectPage = () => {
   const [categories, setCategories] = useState(uniqueCategories);

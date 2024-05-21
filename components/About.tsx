@@ -26,25 +26,26 @@ const infoData = [
   { icon: <HomeIcon size={20} />, text: "321 Blue Avenue, NY, USA" },
 ];
 
-type QualificationDataProps =
-  | {
-      title: string;
-      data: {
-        university: string;
-        qualification: string;
-        years: string;
-      }[];
-    }
-  | {
-      title: string;
-      data: {
-        company: string;
-        role: string;
-        years: string;
-      }[];
-    };
+interface IEducationData {
+  university: string;
+  qualification: string;
+  years: string;
+}
 
-const qualificationData = [
+interface IExperienceData {
+  company: string;
+  role: string;
+  years: string;
+}
+
+interface IQualificationData<T> {
+  title: String;
+  data: T[];
+}
+
+const qualificationData: IQualificationData<
+  IEducationData | IExperienceData
+>[] = [
   {
     title: "education",
     data: [
@@ -87,21 +88,20 @@ const qualificationData = [
   },
 ];
 
-type SkillDataProps =
-  | {
-      title: string;
-      data: {
-        name: string;
-      }[];
-    }
-  | {
-      title: string;
-      data: {
-        imgPath: string;
-      }[];
-    };
+interface ISkillsData {
+  name: string;
+}
 
-const skillData = [
+interface IToolsData {
+  imgPath: string;
+}
+
+interface ISkillData<T> {
+  title: string;
+  data: T[];
+}
+
+const skillData: ISkillData<ISkillsData | IToolsData>[] = [
   {
     title: "skills",
     data: [
@@ -140,10 +140,15 @@ const skillData = [
 
 const About = () => {
   const getData = (
-    arr: QualificationDataProps[] | SkillDataProps[],
+    arr:
+      | IQualificationData<IEducationData | IExperienceData>[]
+      | ISkillData<ISkillsData | IToolsData>[],
     title: string
-  ): QualificationDataProps | SkillDataProps | undefined => {
-    return arr.find((item) => item?.title === title);
+  ):
+    | IQualificationData<IEducationData | IExperienceData>
+    | ISkillData<ISkillsData | IToolsData>
+    | undefined => {
+    return arr.find((item) => item.title === title);
   };
 
   return (
@@ -230,15 +235,7 @@ const About = () => {
                         <div className="flex flex-col gap-y-8">
                           {getData(qualificationData, "experience")?.data.map(
                             (item, index) => {
-                              const {
-                                company,
-                                role,
-                                years,
-                              }: {
-                                company?: string;
-                                role?: string;
-                                years?: string;
-                              } = item;
+                              const { company, role, years }: any = item;
                               return (
                                 <div
                                   className="flex gap-x-8 group "
@@ -280,15 +277,8 @@ const About = () => {
                         <div className="flex flex-col gap-y-8">
                           {getData(qualificationData, "education")?.data.map(
                             (item, index) => {
-                              const {
-                                university,
-                                qualification,
-                                years,
-                              }: {
-                                university?: string;
-                                qualification?: string;
-                                years?: string;
-                              } = item;
+                              const { university, qualification, years }: any =
+                                item;
                               return (
                                 <div
                                   className="flex gap-x-8 group "
@@ -332,7 +322,7 @@ const About = () => {
                       <div>
                         {getData(skillData, "skills")?.data.map(
                           (item, index) => {
-                            const { name }: { name?: string } = item;
+                            const { name }: any = item;
                             return (
                               <div
                                 key={index}
@@ -355,10 +345,11 @@ const About = () => {
                       <div className="flex gap-x-8 justify-center xl:justify-start">
                         {getData(skillData, "tools")?.data.map(
                           (item, index) => {
-                            const { imgPath }: { imgPath: string } = item;
+                            const { imgPath }: any = item;
                             return (
                               <div key={index}>
                                 <Image
+                                  alt=""
                                   src={imgPath}
                                   width={48}
                                   height={48}
